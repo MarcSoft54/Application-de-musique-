@@ -142,14 +142,14 @@ class _MyHomePageState extends State<MyHomePage> {
   void configurationAudioPlayer(){
     audioPlayer = new AudioPlayer();
 
-    positionSub = audioPlayer.onAudioPositionChanged.listen(
+    positionSub = audioPlayer.onPositionChanged.listen(
             (pos) => setState(() => position = pos)
     );
 
     stateSub = audioPlayer.onPlayerStateChanged.listen((state) {
-      if(state == AudioPlayerState.PLAYING){
+      if(state == PlayerState.paying){
         setState(() {
-          duree = audioPlayer.duration;
+          duree = audioPlayer.onDurationChanged as Duration;
         });
       }else if (state == PlayerState.stopped){
         setState(() {
